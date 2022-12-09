@@ -27,8 +27,7 @@ const AUTH_HEADERS = {
   providedIn: 'root',
 })
 export class BaseHttpService {
-  private readonly _hred = 'https://api.aspose.cloud';
-  private readonly _baseHref = 'https://api.aspose.cloud/v3.0';
+  private readonly _baseHref = '/v3.0';
 
   constructor(
     private _http: HttpClient,
@@ -40,10 +39,9 @@ export class BaseHttpService {
     params: URLSearchParams
   ): Observable<HttpResponse<R>> {
     const headers = new HttpHeaders(AUTH_HEADERS);
-    headers.append('Access-Control-Allow-Origin', `${this._hred + url}`);
 
     return this._http
-      .post<HttpResponse<R>>(this._hred + url, params, {
+      .post<HttpResponse<R>>(url, params, {
         headers: headers,
       })
       .pipe(

@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
         if (token) {
           this._storage.setItem(StorageType.Token, token);
           this.isUserNeedToAuth = false;
+          this._snackBarOpen('Success');
         }
       });
   }

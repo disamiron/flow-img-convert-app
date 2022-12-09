@@ -16,8 +16,10 @@ export class AuthComponent {
   ) {}
 
   public asposeClientFormGroup: FormGroup = this._fb.group({
-    clientId: [null, [Validators.required]],
-    clientSecret: [null, [Validators.required]],
+    // clientId: [null, [Validators.required]],
+    // clientSecret: [null, [Validators.required]],
+    clientId: ['fc738139-5109-4260-81ef-df823e4db677', [Validators.required]],
+    clientSecret: ['505071c48c9143a95aced04771bce5fd', [Validators.required]],
   });
 
   public submit() {
