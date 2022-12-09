@@ -1,1 +1,24 @@
 <h1>Flow Img Convert App</h1>
+<ngx-dropzone
+  class="mb-30 mt-30"
+  (change)="onFileUpload($event)"
+  [multiple]="true"
+  accept="image/jpeg,image/jpg,image/svg,image/dicom"
+>
+  <div class="info">
+    <p class="titles">Select a file or drag and drop it here</p>
+    <p class="titles__subtitle">Format *JPG, *SVG, *DICOM.</p>
+    <div class="progress">
+      <div *ngFor="let loading of loadingArray">
+        <mat-progress-bar [value]="loading.progress"> </mat-progress-bar>
+      </div>
+    </div>
+  </div>
+</ngx-dropzone>
+
+<h2 *ngIf="loadedFiles.length">Results</h2>
+<div class="results">
+  <div *ngFor="let file of loadedFiles; index as i">
+    <img [src]="sanitize(file.image!)" />
+  </div>
+</div>
