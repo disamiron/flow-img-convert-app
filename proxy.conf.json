@@ -4,7 +4,7 @@
     "secure": true,
     "changeOrigin": true
   },
-  "https://disamiron.github.io/flow-img-convert-app/": {
+  "https://disamiron.github.io/flow-img-convert-app": {
     "target": "https://api.aspose.cloud",
     "secure": true,
     "changeOrigin": true
