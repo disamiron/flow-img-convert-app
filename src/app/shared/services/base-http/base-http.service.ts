@@ -21,6 +21,7 @@ const DEFAULT_HEADERS = {
 const AUTH_HEADERS = {
   Accept: 'application/json',
   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  'access-control-allow-origin': 'https://disamiron.github.io',
 };
 
 @Injectable({
