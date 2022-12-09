@@ -21,7 +21,6 @@ const DEFAULT_HEADERS = {
 const AUTH_HEADERS = {
   Accept: 'application/json',
   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-  'Access-Control-Allow-Origin': '*',
 };
 
 @Injectable({
