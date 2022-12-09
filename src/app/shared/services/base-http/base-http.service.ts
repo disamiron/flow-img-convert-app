@@ -40,7 +40,7 @@ export class BaseHttpService {
     params: URLSearchParams
   ): Observable<HttpResponse<R>> {
     const headers = new HttpHeaders(AUTH_HEADERS);
-    headers.append('Access-Control-Allow-Origin', this._baseHref);
+    headers.append('Access-Control-Allow-Origin', '*');
 
     return this._http
       .post<HttpResponse<R>>(this._baseHref + url, params, {
