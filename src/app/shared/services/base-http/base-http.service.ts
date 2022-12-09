@@ -21,6 +21,7 @@ const DEFAULT_HEADERS = {
 const AUTH_HEADERS = {
   Accept: 'application/json',
   'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  'access-control-allow-origin': '*',
 };
 
 @Injectable({
@@ -40,7 +41,6 @@ export class BaseHttpService {
     params: URLSearchParams
   ): Observable<HttpResponse<R>> {
     const headers = new HttpHeaders(AUTH_HEADERS);
-    headers.append('Access-Control-Allow-Origin', '*');
 
     return this._http
       .post<HttpResponse<R>>(this._baseHref + url, params, {
