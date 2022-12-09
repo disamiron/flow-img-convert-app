@@ -7,7 +7,9 @@
   max-width: 1000px;
   padding: 20px;
 }
-
+h2 {
+  text-align: center;
+}
 .need-access {
   display: flex;
   align-items: center;
@@ -32,6 +34,7 @@ ngx-dropzone {
     align-items: center;
     color: #0f186bc2;
     font-size: 18px;
+    text-align: center;
     &__progress {
       display: flex;
       flex-direction: row;
