@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Token } from '../../interfaces';
 import { BaseHttpService } from '../base-http/base-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AsposeService {
-  // private readonly _tokenHref =
-  //   '/connect/token&grant_type=client_credentials&client_id=fc738139-5109-4260-81ef-df823e4db677&client_secret=505071c48c9143a95aced04771bce5fd';
   private readonly _tokenHref = '/connect/token';
   private readonly _baseHref = '/imaging/convert?format=png';
   constructor(private _http: BaseHttpService) {}
 
-  public getToken() {
-    return this._http.postData<any>(this._tokenHref);
+  public getToken(clientId: string, clientSecret: string) {
+    let params = new URLSearchParams({
+      grant_type: 'client_credentials',
+      client_id: clientId,
+      client_secret: clientSecret,
+    });
+    return this._http.postData<Token>(this._tokenHref, params);
   }
 
   public convertImg(data: File) {

@@ -1,14 +1,9 @@
-export const SvgIcons = {
-  slidersHorizontal: 'assets/icons-svg/slidershorizontal.svg',
-};
-
-export const cardDescriptionMock = {
-  'Attached to': 'Special Form',
-  Place: 'England, London, Walker St',
-  Date: '30.09.2022',
-  Time: '20:00',
-};
-
 export const limitLoadedFiles: number = 30;
 
 export const limitLoadingFiles: number = 3;
+
+export const requiredMsg: string = 'This is a required field';
+
+export const limitLoadedFilesMsg: string = 'Only 30 pictures per session';
+
+export const wrongFileType: string = 'Wrong file type';

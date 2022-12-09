@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AuthComponent } from './components/auth/auth.component';
+import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatProgressBarModule,
-  ],
+  declarations: [AuthComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressBarModule,
+    MaterialModule,
+    BrowserAnimationsModule,
   ],
 })
 export class SharedModule {}
