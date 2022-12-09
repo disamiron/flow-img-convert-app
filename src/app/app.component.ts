@@ -10,6 +10,7 @@ import {
   limitLoadedFiles,
   limitLoadedFilesMsg,
   limitLoadingFiles,
+  outputFormats,
   wrongFileType,
 } from './shared/constants';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +18,7 @@ import { AuthComponent } from './shared/components/auth/auth.component';
 import { StorageService } from './shared/services/storage/storage.service';
 import { StorageType } from './shared/services/storage/storage.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @UntilDestroy()
 @Component({
@@ -33,7 +35,7 @@ export class AppComponent implements OnInit {
 
   private _limitFiles: number = limitLoadedFiles;
 
-  public _loadingCount: number = 0;
+  public loadingCount: number = 0;
 
   private _limitLoadingCount: number = limitLoadingFiles;
 
@@ -50,13 +52,20 @@ export class AppComponent implements OnInit {
 
   public isUserNeedToAuth: boolean = true;
 
+  public readonly outputFormats = outputFormats;
+
+  public outputFormGroup: FormGroup = this._fb.group({
+    outputFormat: [outputFormats[0].value],
+  });
+
   constructor(
     private _aspose: AsposeService,
     private _cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
     private _dialog: MatDialog,
     private _storage: StorageService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _fb: FormBuilder
   ) {}
 
   public ngOnInit(): void {
@@ -108,13 +117,13 @@ export class AppComponent implements OnInit {
   }
 
   private _checkBoofer() {
-    if (this.boofer.length && this._loadingCount < this._limitLoadingCount) {
+    if (this.boofer.length && this.loadingCount < this._limitLoadingCount) {
       this._startConvertImg();
     }
   }
 
   private _startConvertImg(): void {
-    this._loadingCount += 1;
+    this.loadingCount += 1;
     const file = this.boofer[0];
 
     this.boofer.shift();
@@ -129,7 +138,7 @@ export class AppComponent implements OnInit {
     this.loadingId += 1;
 
     const _sub = this._aspose
-      .convertImg(file)
+      .convertImg(file, this.outputFormGroup.value.outputFormat)
       .pipe(
         untilDestroyed(this),
         finalize(() => {
@@ -159,7 +168,7 @@ export class AppComponent implements OnInit {
           };
 
           this.loadedFiles.unshift(imgObj);
-          this._loadingCount -= 1;
+          this.loadingCount -= 1;
 
           let index = this.loadingArray.findIndex(
             (info) => info.id === loadingId

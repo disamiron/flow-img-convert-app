@@ -7,7 +7,8 @@ import { BaseHttpService } from '../base-http/base-http.service';
 })
 export class AsposeService {
   private readonly _tokenHref = '/connect/token';
-  private readonly _baseHref = '/imaging/convert?format=png';
+  private readonly _convertHref = '/imaging/convert';
+
   constructor(private _http: BaseHttpService) {}
 
   public getToken(clientId: string, clientSecret: string) {
@@ -19,7 +20,11 @@ export class AsposeService {
     return this._http.postData<Token>(this._tokenHref, params);
   }
 
-  public convertImg(data: File) {
-    return this._http.postBlobWithProgress<Blob>(this._baseHref, data);
+  public convertImg(data: File, format: string) {
+    return this._http.postBlobWithProgress<Blob>(
+      this._convertHref,
+      { format },
+      data
+    );
   }
 }

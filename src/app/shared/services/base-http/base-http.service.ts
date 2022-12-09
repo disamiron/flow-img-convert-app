@@ -7,7 +7,7 @@ import {
   HttpProgressEvent,
 } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
-import { HttpResponse } from './base-http.type';
+import { HttpResponse, QueryParams } from './base-http.type';
 import { StorageService } from '../storage/storage.service';
 import { StorageType } from '../storage/storage.type';
 import { Token } from '../../interfaces';
@@ -57,6 +57,7 @@ export class BaseHttpService {
 
   public postBlobWithProgress<R>(
     url: string,
+    params: QueryParams,
     file: File
   ): Observable<HttpEvent<HttpProgressEvent | HttpResponse<R>['data']>> {
     const data = new FormData();
@@ -65,6 +66,7 @@ export class BaseHttpService {
     return this._http
       .post(this._baseHref + this._model + url, data, {
         headers: this._createDefaultHeaders(),
+        params: params,
         reportProgress: true,
         observe: 'events',
         responseType: 'blob',

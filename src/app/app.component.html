@@ -11,11 +11,11 @@
   (change)="onFileUpload($event)"
   [multiple]="true"
   [disabled]="isUserNeedToAuth"
-  accept="image/jpeg,image/jpg,image/svg,image/dicom"
+  accept="image/jpeg,image/jpg,image/svg+xml"
 >
   <div class="info">
     <p class="titles">Select a file or drag and drop it here</p>
-    <p class="titles__subtitle">Format *JPG, *SVG, *DICOM.</p>
+    <p class="titles__subtitle">Format *JPG, *SVG.</p>
     <div class="info__progress">
       <div *ngFor="let loading of loadingArray">
         <mat-progress-bar [value]="loading.progress"> </mat-progress-bar>
@@ -23,6 +23,20 @@
     </div>
   </div>
 </ngx-dropzone>
+
+<form [formGroup]="outputFormGroup" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Output format</mat-label>
+    <mat-select
+      formControlName="outputFormat"
+      [disabled]="isUserNeedToAuth || loadingCount !== 0"
+    >
+      <mat-option *ngFor="let format of outputFormats" [value]="format.value">{{
+        format.title
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
 
 <h2 *ngIf="loadedFiles.length">Results</h2>
 <div class="results">
