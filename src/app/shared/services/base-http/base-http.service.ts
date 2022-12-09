@@ -39,9 +39,12 @@ export class BaseHttpService {
     url: string,
     params: URLSearchParams
   ): Observable<HttpResponse<R>> {
+    const headers = new HttpHeaders(AUTH_HEADERS);
+    headers.append('Access-Control-Allow-Origin', `${this._hred + url}`);
+
     return this._http
       .post<HttpResponse<R>>(this._hred + url, params, {
-        headers: AUTH_HEADERS,
+        headers: headers,
       })
       .pipe(
         catchError<any, any>((err: HttpErrorResponse) =>
