@@ -26,8 +26,6 @@ const AUTH_HEADERS = {
   providedIn: 'root',
 })
 export class BaseHttpService {
-  private readonly _model = '/v3.0';
-
   constructor(
     private _http: HttpClient,
     private _storageService: StorageService,
@@ -62,7 +60,7 @@ export class BaseHttpService {
     data.append('file', file, file.name);
 
     return this._http
-      .post(this._model + url, data, {
+      .post(url, data, {
         headers: this._createDefaultHeaders(),
         params: params,
         reportProgress: true,
