@@ -66,8 +66,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "flow-img-convert-app:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "flow-img-convert-app:build"
           },
           "configurations": {
             "production": {
