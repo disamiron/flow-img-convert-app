@@ -104,8 +104,7 @@ export class AppComponent implements OnInit {
     }
     if (
       event.addedFiles.length &&
-      this.boofer.length + this.loadedFiles.length <=
-        this._limitFiles - event.addedFiles.length
+      event.addedFiles.length <= this._limitFiles
     ) {
       this.boofer.push(...event.addedFiles);
     } else {

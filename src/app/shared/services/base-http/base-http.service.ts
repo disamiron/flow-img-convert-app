@@ -42,9 +42,11 @@ export class BaseHttpService {
   ): Observable<HttpResponse<R>> {
     const headers = new HttpHeaders(AUTH_HEADERS);
 
+    headers.append('Access-Control-Allow-Origin', '*');
+
     return this._http
       .post<HttpResponse<R>>(this._baseHref + url, params, {
-        headers: headers,
+        headers: headers.append('Access-Control-Allow-Origin', '*'),
       })
       .pipe(
         catchError<any, any>(() =>
@@ -65,7 +67,10 @@ export class BaseHttpService {
 
     return this._http
       .post(this._baseHref + this._model + url, data, {
-        headers: this._createDefaultHeaders(),
+        headers: this._createDefaultHeaders().append(
+          'Access-Control-Allow-Origin',
+          '*'
+        ),
         params: params,
         reportProgress: true,
         observe: 'events',
