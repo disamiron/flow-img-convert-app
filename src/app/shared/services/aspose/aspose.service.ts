@@ -8,7 +8,7 @@ import { BaseHttpService } from '../base-http/base-http.service';
 export class AsposeService {
   private readonly _tokenHref = '/connect/token';
 
-  private readonly _convertHref = '/v3.0/imaging/convert';
+  private readonly _convertHref = '/imaging/convert';
 
   constructor(private _http: BaseHttpService) {}
 
