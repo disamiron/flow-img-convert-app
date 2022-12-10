@@ -9,6 +9,6 @@ Run
 `npm run start`
 Navigate to `http://localhost:4200/`.
 
-## Notes Gitpage CORS Trouble solition
+## Gitpage CORS Trouble solition
 
 You need download and turn ON this [plugin](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=ru--------------------------------------------------------------------------) for Chrome
