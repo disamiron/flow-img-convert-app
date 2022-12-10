@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
-  HttpErrorResponse,
   HttpEvent,
   HttpHeaders,
   HttpProgressEvent,
@@ -27,7 +26,6 @@ const AUTH_HEADERS = {
   providedIn: 'root',
 })
 export class BaseHttpService {
-  private readonly _baseHref = 'https://api.aspose.cloud';
   private readonly _model = '/v3.0';
 
   constructor(
@@ -35,6 +33,7 @@ export class BaseHttpService {
     private _storageService: StorageService,
     private _snackBar: MatSnackBar
   ) {}
+
   public postData<R>(
     url: string,
     params: URLSearchParams
@@ -42,11 +41,11 @@ export class BaseHttpService {
     const headers = new HttpHeaders(AUTH_HEADERS);
 
     return this._http
-      .post<HttpResponse<R>>(this._baseHref + url, params, {
+      .post<HttpResponse<R>>(url, params, {
         headers: headers,
       })
       .pipe(
-        catchError<any, any>((err: HttpErrorResponse) =>
+        catchError<any, any>(() =>
           this._snackBar.open('Error', 'Close', {
             duration: 3000,
           })
@@ -63,7 +62,7 @@ export class BaseHttpService {
     data.append('file', file, file.name);
 
     return this._http
-      .post(this._baseHref + this._model + url, data, {
+      .post(this._model + url, data, {
         headers: this._createDefaultHeaders(),
         params: params,
         reportProgress: true,
@@ -71,7 +70,7 @@ export class BaseHttpService {
         responseType: 'blob',
       })
       .pipe(
-        catchError<any, any>((err: HttpErrorResponse) =>
+        catchError<any, any>(() =>
           this._snackBar.open('Error', 'Close', {
             duration: 3000,
           })
