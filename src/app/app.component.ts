@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { finalize, Subscription, take } from 'rxjs';
 import { AsposeService } from './shared/services/aspose/aspose.service';
 import { NgxDropzoneChangeEvent } from 'ngx-dropzone';
@@ -26,7 +26,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'flow-img-convert-app';
 
   public loadedFiles: ImageObject[] = [];
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
 
   public loadingId: number = 0;
 
-  public isUserNeedToAuth: boolean = true;
+  public isUserNeedToAuth: boolean = false;
 
   public readonly outputFormats = outputFormats;
 
@@ -67,10 +67,6 @@ export class AppComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _fb: FormBuilder
   ) {}
-
-  public ngOnInit(): void {
-    this.authModal();
-  }
 
   public authModal() {
     this._dialog
@@ -137,12 +133,12 @@ export class AppComponent implements OnInit {
     });
     this.loadingId += 1;
 
-    const _sub = this._aspose
+    const sub = this._aspose
       .convertImg(file, this.outputFormGroup.value.outputFormat)
       .pipe(
         untilDestroyed(this),
         finalize(() => {
-          this._stopUploadFile(_sub);
+          this._stopUploadFile(sub);
         })
       )
       .subscribe((res) => {

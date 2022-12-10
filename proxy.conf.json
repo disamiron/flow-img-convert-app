@@ -2,6 +2,7 @@
   "/v3.0": {
     "target": "https://api.aspose.cloud",
     "secure": false,
+    "pathRewrite": { "^/v3.0": "" },
     "logLevel": "debug",
     "changeOrigin": true
   },
