@@ -1,12 +1,12 @@
 {
   "/v3.0": {
     "target": "https://api.aspose.cloud",
-    "secure": false,
+    "secure": true,
     "changeOrigin": true
   },
   "/connect": {
     "target": "https://api.aspose.cloud",
-    "secure": false,
+    "secure": true,
     "changeOrigin": true
   }
 }
