@@ -1,35 +1,31 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthComponent } from './auth.component';
+import { FlowImgConvertComponent } from './flow-img-convert.component';
 
-describe('AuthComponent', () => {
-  let component: AuthComponent;
-  let fixture: ComponentFixture<AuthComponent>;
+describe('FlowImgConvertComponent', () => {
+  let component: FlowImgConvertComponent;
+  let fixture: ComponentFixture<FlowImgConvertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AuthComponent],
+      declarations: [FlowImgConvertComponent],
       imports: [
         HttpClientTestingModule,
         MatSnackBarModule,
         MatDialogModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-      ],
-      providers: [
-        {
-          provide: MatDialogRef,
-          useValue: {},
-        },
+        MatSelectModule,
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AuthComponent);
+    fixture = TestBed.createComponent(FlowImgConvertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

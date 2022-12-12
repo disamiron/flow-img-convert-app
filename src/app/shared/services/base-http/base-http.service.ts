@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
+  HttpErrorResponse,
   HttpEvent,
   HttpHeaders,
   HttpProgressEvent,
 } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { HttpResponse, QueryParams } from './base-http.type';
 import { StorageService } from '../storage/storage.service';
 import { StorageType } from '../storage/storage.type';
@@ -49,11 +50,9 @@ export class BaseHttpService {
         headers: headers,
       })
       .pipe(
-        catchError<any, any>(() =>
-          this._snackBar.open('Error', 'Close', {
-            duration: 3000,
-          })
-        )
+        catchError<any, any>((e) => {
+          return this._handleError(e);
+        })
       );
   }
 
@@ -74,11 +73,9 @@ export class BaseHttpService {
         responseType: 'blob',
       })
       .pipe(
-        catchError<any, any>(() =>
-          this._snackBar.open('Error', 'Close', {
-            duration: 3000,
-          })
-        )
+        catchError<any, any>((e) => {
+          return this._handleError(e);
+        })
       );
   }
 
@@ -91,5 +88,12 @@ export class BaseHttpService {
     }
 
     return headers;
+  }
+
+  private _handleError(e: HttpErrorResponse): Observable<Error> {
+    this._snackBar.open('Error', 'Close', {
+      duration: 3000,
+    });
+    return throwError(() => e);
   }
 }

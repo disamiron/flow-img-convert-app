@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -18,8 +18,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonToggleModule,
     MatIconModule,
     MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
     MatProgressBarModule,
@@ -31,8 +29,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonToggleModule,
     MatIconModule,
     MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
     MatProgressBarModule,
