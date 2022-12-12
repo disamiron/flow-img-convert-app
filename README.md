@@ -9,6 +9,12 @@ Run
 `npm run start`
 Navigate to `http://localhost:4200/`.
 
-## Gitpage CORS Trouble solution
+## About project
 
-You need download and turn ON this [plugin](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=ru--------------------------------------------------------------------------) for Chrome
+This project was built to implement streaming image conversion based on [Aspose Imaging API](https://apireference.aspose.cloud/imaging/).
+
+Allows you to process a large number of photos (no more than 30). Stream processing, and no more than 3 simultaneous requests.
+
+## Used libraries
+
+- [ngx-dropzone](https://www.npmjs.com/package/ngx-dropzone)
